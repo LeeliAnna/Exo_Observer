@@ -10,36 +10,35 @@ namespace Exo_Observer.Models
 {
     public class Magazine : ISubject
     {
-        Action<ISubject, NotificationEventArgs> ISubject.ObserverEvent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string Name { get; set; }
+
+        public Magazine(string name)
+        {
+            Name = name;
+        }
+
+        Action<ISubject, NotificationEventArgs> ObserverEvent { get; set; }
 
         public void Abonnement(IObserver observer)
         {
-            throw new NotImplementedException();
+            ObserverEvent += observer.Update;
         }
 
         public void Desabonnement(IObserver observer)
         {
-            throw new NotImplementedException();
+            if (ObserverEvent is not null)
+            {
+                ObserverEvent -= observer.Update;
+            }
         }
 
         public void Notification()
         {
-            throw new NotImplementedException();
+            ObserverEvent?.Invoke(this, new NotificationEventArgs());
+         
         }
 
-        void ISubject.Abonnement(IObserver observer)
-        {
-            throw new NotImplementedException();
-        }
-
-        void ISubject.Desabonnement(IObserver observer)
-        {
-            throw new NotImplementedException();
-        }
-
-        void ISubject.Notification()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
