@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace Exo_Observer.Models
 {
-    public class Magazine : ISubject
+    public class Media : ISubject
     {
 
         public string Name { get; set; }
+        public string Description { get; set; }
 
-        public Magazine(string name)
+        public Media(string name, string description)
         {
             Name = name;
+            Description = description;
         }
 
         Action<ISubject, NotificationEventArgs> ObserverEvent { get; set; }
@@ -33,10 +35,9 @@ namespace Exo_Observer.Models
             }
         }
 
-        public void Notification()
+        public void Notification(ISubject sender, NotificationEventArgs e)
         {
-            ObserverEvent?.Invoke(this, new NotificationEventArgs());
-         
+            ObserverEvent?.Invoke(sender, e);
         }
 
         

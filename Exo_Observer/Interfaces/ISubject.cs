@@ -9,12 +9,14 @@ namespace Exo_Observer.Interfaces
 {
     public interface ISubject
     {
-        protected Action<ISubject,NotificationEventArgs> ObserverEvent { get; set; }
+        //protected Action<ISubject,NotificationEventArgs> ObserverEvent { get; set; }
+
+        public string Description { get; set; }
 
         public void Abonnement(IObserver observer);
 
         public void Desabonnement(IObserver observer);
 
-        public void Notification();
+        public void Notification(ISubject sender, NotificationEventArgs e);
     }
 }

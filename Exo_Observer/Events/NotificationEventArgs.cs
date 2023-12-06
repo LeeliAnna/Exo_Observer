@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exo_Observer.Events
 {
-    public class NotificationEventArgs
+    public class NotificationEventArgs : EventArgs
     {
         // Créaion des propriété de mon évènement
         public NotificationType _notificationType { get; set; }

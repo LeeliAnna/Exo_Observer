@@ -24,30 +24,19 @@ namespace Exo_Observer.Models
         
         public void Update(ISubject sender, NotificationEventArgs e)
         {
-            if (sender is Magazine magazine)
+            if (sender is not null)
             {
                 switch (e._notificationType)
                 {
                     case NotificationType.Publicite:
-                        Console.WriteLine($"Client {Name}, notifier pour une publicité par {magazine}.");
+                        Console.WriteLine($"Client {Name}, notifié pour une publicité par {sender.Description}.");
                         break;
                     case NotificationType.Nouveaute:
-                        Console.WriteLine($"Client {Name}, notifier pour une nouveauté par {magazine}.");
+                        Console.WriteLine($"Client {Name}, notifié pour une nouveauté par {sender.Description}.");
                         break;
                 }
             }
-            else if (sender is SiteWeb site)
-            {
-                switch (e._notificationType)
-                {
-                    case NotificationType.Publicite:
-                        Console.WriteLine($"Client {Name}, notifier pour une publicité par {site}.");
-                        break;
-                    case NotificationType.Nouveaute:
-                        Console.WriteLine($"Client {Name}, notifier pour une nouveauté par {site}.");
-                        break;
-                }
-            }
+            
 
         }
     }
